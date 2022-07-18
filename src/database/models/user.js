@@ -27,7 +27,7 @@ const attributes = {
 module.exports = (sequelize) => {
   const users = sequelize.define('User', attributes, { tableName: 'Users' });
   users.associate = (models) => {
-    users.hasMany(models.blogPosts, { key: 'userId', as: 'BlogPosts' });
+    users.hasMany(models.BlogPost, { key: 'userId', as: 'BlogPosts' });
   };
   return users;
 }
