@@ -1,9 +1,10 @@
-// const loginService = require('../services/loginService');
+const loginService = require('../services/loginService');
 
-// const add = async (req, res) => {
-//   const data = await loginService.validateBodyAdd(req.body);
-//   const user = await loginService.add(data);
-//   res.status(201).json(user);
-// };
+const login = async (req, res) => {
+  const data = await loginService.validateBodyLogin(req.body);
+  const user = await loginService.getByEmailOrThrows(data.email);
+  const token = await loginService.makeToken(user);
+  return res.status(200).json({ token });
+};
 
-// module.exports = { add };
+module.exports = { login };
