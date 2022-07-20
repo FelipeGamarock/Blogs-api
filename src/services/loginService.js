@@ -9,13 +9,11 @@ const validateBodyLogin = async (unknown) => {
   const schema = Joi.object({
     email: Joi.string().required().email().max(255),
     password: Joi.string().required().max(255),
+  }).messages({
+    'string.empty': 'Some required fields are missing',
+    'any.required': 'Some required fields are missing',
   });
   const result = await schema.validateAsync(unknown);
-  if (result.error) {
-    const err = new Error('Some required fields are missing');
-    err.name = 'ValidationError';
-    throw err;
-  }
   return result;
 };
 
@@ -26,7 +24,7 @@ const getByEmailOrThrows = async (email) => {
   });
   if (!user) {
     const err = new Error('Invalid fields');
-    err.name = 'NotFoundError';
+    err.name = 'ValidationError';
     throw err;
   }
   return user;

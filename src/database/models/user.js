@@ -22,10 +22,11 @@ const attributes = {
   image: {
     type: DataTypes.STRING,
   },
+
 };
 
 module.exports = (sequelize) => {
-  const users = sequelize.define('User', attributes, { tableName: 'Users' });
+  const users = sequelize.define('User', attributes, { tableName: 'Users', timestamps: false });
   users.associate = (models) => {
     users.hasMany(models.BlogPost, { key: 'userId', as: 'BlogPosts' });
   };
