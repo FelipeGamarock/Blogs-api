@@ -32,9 +32,9 @@ const getByEmailOrThrows = async (email) => {
 
 const makeToken = async (user) => {
   const { id, name } = user;
-    const payload = { data: { id, name } };
-    const token = jwt.sign(payload, secret);
-    return token;
+  const payload = { data: { id, name } };
+  const token = jwt.sign(payload, secret);
+  return token;
 };
 
 module.exports = { validateBodyLogin, getByEmailOrThrows, makeToken };
