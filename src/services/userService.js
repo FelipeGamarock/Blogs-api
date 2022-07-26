@@ -32,6 +32,13 @@ const userService = {
     return user;
   },
 
+  async list() {
+    const users = await models.User.findAll({
+      attributes: { exclude: ['password'] },
+    });
+    return users;
+  },
+
   async makeToken(data) {
     const { displayName, email, image } = data;
     const payload = { data: { displayName, email, image } };
