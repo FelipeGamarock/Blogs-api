@@ -22,6 +22,19 @@ const usersController = {
     return res.status(200).json(users);
   },
 
+  async get(req, res) {
+    const token = req.headers.authorization;
+    if (!token) {
+      const err = new Error('Token not found');
+      err.name = 'UnauthorizedError';
+      throw err;
+    }
+    await TokenMiddleware.verifyToken(token);
+    const { id } = req.params;
+    const user = await userService.getEager(id);
+    return res.status(200).json(user);
+  },
+
 };
 
 module.exports = usersController;

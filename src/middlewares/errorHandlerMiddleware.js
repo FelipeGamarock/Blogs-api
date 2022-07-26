@@ -1,7 +1,7 @@
 const errors = {
   ValidationError: 400,
   UnauthorizedError: 401,
-  // NotFoundError: 404,
+  NotFoundError: 404,
   UserAlreadyExistsError: 409,
 };
 

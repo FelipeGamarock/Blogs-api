@@ -39,6 +39,19 @@ const userService = {
     return users;
   },
 
+  async getEager(id) {
+    const user = await models.User.findByPk(id, {
+      raw: true,
+      attributes: { exclude: ['password'] },
+    });
+    if (!user) {
+      const err = new Error('User does not exist');
+      err.name = 'NotFoundError';
+      throw err;
+    }
+    return user;
+  },
+
   async makeToken(data) {
     const { displayName, email, image } = data;
     const payload = { data: { displayName, email, image } };
