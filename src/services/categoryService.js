@@ -12,12 +12,12 @@ const categoryService = {
   },
 
   async add(body) {
-    const user = await models.Category.create(body, { raw: true });
+    const user = await models.Categories.create(body);
     return user;
   },
 
   async list() {
-    const categories = await models.Category.findAll();
+    const categories = await models.Categories.findAll({ raw: true });
     return categories;
   },
 
