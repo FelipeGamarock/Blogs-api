@@ -5,10 +5,10 @@ const categoryController = {
 
   async add(req, res) {
     await TokenMiddleware.verifyToken(req.headers);
-    const data = await categoryService.validateBodyAdd(req.body);
-    const category = await categoryService.add(data);
-    return res.status(201).json({ category });
-  },
+    await categoryService.validadeCategoryBody(req.body);
+    const category = await categoryService.add(req.body);
+    return res.status(201).json(category);
+},
 
   async list(req, res) {
     await TokenMiddleware.verifyToken(req.headers);

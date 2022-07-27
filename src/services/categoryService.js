@@ -3,16 +3,15 @@ const models = require('../database/models');
 
 const categoryService = {
   
-  async validateBodyAdd(unknown) {
+  async validadeCategoryBody(unknown) {
     const schema = Joi.object({
-      name: Joi.string().required(),
+      name: Joi.string().required().max(255),
     });
     const result = await schema.validateAsync(unknown);
     return result;
   },
-
   async add(body) {
-    const user = await models.Categories.create(body);
+    const user = await models.Category.create(body, { raw: true });
     return user;
   },
 
