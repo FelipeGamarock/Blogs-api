@@ -4,7 +4,7 @@ const categoryController = require('../controllers/categoryController');
 
 const categoryRoute = Router();
 
-categoryRoute.post('/', rescue(categoryController.add));
+// categoryRoute.post('/', rescue(categoryController.add));
 categoryRoute.get('/', rescue(categoryController.list));
 
 module.exports = categoryRoute;

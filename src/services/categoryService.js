@@ -17,7 +17,7 @@ const categoryService = {
   },
 
   async list() {
-    const categories = await models.Categories.findAll({ raw: true });
+    const categories = await models.Category.findAll();
     return categories;
   },
 

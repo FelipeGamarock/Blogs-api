@@ -12,7 +12,6 @@ const categoryController = {
 
   async list(req, res) {
     await TokenMiddleware.verifyToken(req.headers);
-    console.log('12345');
     const categories = await categoryService.list();
     return res.status(200).json(categories);
   },
